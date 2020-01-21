@@ -41,3 +41,21 @@ form{
   color: black;
   margin-right: 0;
 }
+img{
+  margin-left:-20px ;
+  width: 500px;
+  height: 400px;
+}
+.gen-btn{
+  background-color: rgb(43, 1, 1);
+  color:wheat;
+  width: 130px;
+  height: 40px;
+}
+.gen-btn:hover{
+  background-color: rgba(43, 1, 1, 0.658);
+}
+.gen-btn:active{
+  background-color: rgba(43, 1, 1, 0.658);
+
+}

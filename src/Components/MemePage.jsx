@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import randomMeme from '../img/IMG_20200116_130709.jpg'
 
-const memeAPI = '"https://api.imgflip.com/get_memes"'
+const memeAPI = "https://api.imgflip.com/get_memes"
 
 class MemePage extends Component {
     constructor(props) {
@@ -16,12 +16,12 @@ class MemePage extends Component {
     }
     componentDidMount() {
         fetch(memeAPI)
-          .then(res => res.json())
-          .then(res => {
-        const { memes } = res.data
-        this.setState({ allMemeImgs: memes })
-        })
-      }
+            .then(res => res.json())
+            .then(res => {
+                this.setState({ allMemeImgs: res.data.memes.url })
+            })
+            .catch((error) => console.log(error))
+    }
     handleTopForm = (e) => {
         this.setState({
             topText: e.target.value
@@ -33,20 +33,18 @@ class MemePage extends Component {
             bottomText: e.target.value
         })
     }
-    handleSubmit = () => {
-        alert('it works')
-    }
 
     handleSubmit = e => {
         e.preventDefault()
         const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length)
-        const randMemeImg = this.state.allMemeImgs[randNum].url
-        this.setState({ defaultImg: randMemeImg })
+        const randMemeImg = this.state.allMemeImgs[randNum]
+        this.setState({ defaultImg: randMemeImg })    
     }
+
     render() {
         const { topText, bottomText } = this.state
         return (
-            <div className="row">
+            <div>
                 <div className="col-md-3"></div>
                 <div className="col-md-7">
                     <div className="col-md-7">
@@ -67,7 +65,9 @@ class MemePage extends Component {
 
                             <br />
                             <center>
-                                <button className="btn btn-default btn-cus" type='submit'>Generate</button>
+                                <div>
+                                    <button className="btn btn-default gen-btn" type='submit'>Generate</button>
+                                </div>
                             </center>
                         </form>
 
