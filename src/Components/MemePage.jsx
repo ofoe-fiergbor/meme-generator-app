@@ -10,14 +10,14 @@ class MemePage extends Component {
             defaultImg: 'http://i.imgflip.com/1bij.jpg',
             topText: '',
             bottomText: '',
-            allMemeImgs: []
+            allMemes: []
         }
     }
     componentDidMount() {
         fetch(memeAPI)
             .then(res => res.json())
             .then(res => {
-                this.setState({ allMemeImgs: res.data.memes})
+                this.setState({ allMemes: res.data.memes})
             })
             .catch((error) => console.log(error))
     }
@@ -35,8 +35,8 @@ class MemePage extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length)
-        this.setState({ defaultImg: this.state.allMemeImgs[randNum].url})    
+        const randNum = Math.floor(Math.random() * this.state.allMemes.length)
+        this.setState({ defaultImg: this.state.allMemes[randNum].url})    
     }
 
     render() {
