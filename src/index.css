@@ -9,6 +9,9 @@ body {
   background-color: rgba(153, 245, 217, 0.192);
 
 }
+header{
+  margin-bottom: 5%;
+}
 .navbar{
   height: 80px;
   color: white;
