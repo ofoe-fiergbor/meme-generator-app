@@ -31,12 +31,12 @@ body {
 .bottom{
   z-index: 999;
   position: absolute;
-  top:340px;
+  top:310px;
   color: white;
   font-weight: bolder;
   
 }
-form{
+.form{
   margin-top: 30%;
   color: black;
   margin-left: 0;

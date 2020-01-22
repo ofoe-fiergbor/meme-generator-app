@@ -11,14 +11,16 @@ class MemePage extends Component {
             topText: '',
             bottomText: '',
             allMemes: [],
-            fontColor: 'white'
+            topFontColor: 'white',
+            bottomFontColor: 'white'
+
         }
     }
     componentDidMount() {
         fetch(memeAPI)
             .then(res => res.json())
             .then(res => {
-                this.setState({ allMemes: res.data.memes})
+                this.setState({ allMemes: res.data.memes })
             })
             .catch((error) => console.log(error))
     }
@@ -33,26 +35,43 @@ class MemePage extends Component {
             bottomText: e.target.value
         })
     }
-    handleBlackColorClick = ()=>{
+    blackColorClick = () => {
         this.setState({
-            fontColor:'black'
+            topFontColor: 'black'
         })
-        this.divStyle ={
-            color: this.state.fontColor
-          }
+        this.topFontStyle = {
+            color: this.state.topFontColor
+        }
     }
-    handleWhiteColorClick =()=>{
+    whiteColorClick = () => {
         this.setState({
-            fontColor:'white'
+            topFontColor: 'white'
         })
-        this.divStyle ={
-            color: this.state.fontColor
-          }
+        this.topFontStyle = {
+            color: this.state.topFontColor
+        }
     }
+    blackColorClick2 = () => {
+        this.setState({
+            bottomFontColor: 'black'
+        })
+        this.bottomFontStyle = {
+            color: this.state.bottomFontColor
+        }
+    }
+    whiteColorClick2 = () => {
+        this.setState({
+            bottomFontColor: 'white'
+        })
+        this.bottomFontStyle = {
+            color: this.state.bottomFontColor
+        }
+    }
+
     handleSubmit = e => {
         e.preventDefault()
         const randNum = Math.floor(Math.random() * this.state.allMemes.length)
-        this.setState({ defaultImg: this.state.allMemes[randNum].url})    
+        this.setState({ defaultImg: this.state.allMemes[randNum].url })
     }
 
     render() {
@@ -63,30 +82,30 @@ class MemePage extends Component {
                 <div className="col-md-7">
                     <div className="col-md-7">
                         <div className='meme'>
-                            <h2 className='top' style={this.divStyle}>{topText}</h2>
+                            <h2 className='top' style={this.topFontStyle}>{topText}</h2>
                             <img src={this.state.defaultImg} alt='random meme' />
-                            <h2 className='bottom' style={this.state.color}>{bottomText}</h2>
+                            <h2 className='bottom' style={this.bottomFontStyle}>{bottomText}</h2>
                         </div>
                     </div>
                     <div className="col-md-5">
-                        <form onSubmit={this.handleSubmit}>
+                        <div className='form' >
                             <div className="form-group col-md-8">
                                 <input type='text' className="form-control" placeholder='Top Text' value={topText} onChange={this.handleTopForm} />
                             </div>
-                            <button onClick={this.handleBlackColorClick} className='col-md-2 col-bnt col-btn1'></button>
-                            <button onClick={this.handleWhiteColorClick} className='col-md-2 col-bnt col-btn2'></button>
+                            <button onClick={this.blackColorClick} className='col-md-2 col-bnt col-btn1'></button>
+                            <button onClick={this.whiteColorClick} className='col-md-2 col-bnt col-btn2'></button>
                             <div className="form-group col-md-8">
                                 <input type='text' className="form-control" placeholder='Bottom Text' value={bottomText} onChange={this.handleBottomText} />
                             </div>
-                            <button onClick={this.handleBlackColorClick} className='col-md-2 col-bnt col-btn1'></button>
-                            <button onClick={this.handleWhiteColorClick} className='col-md-2 col-bnt col-btn2'></button>
+                            <button onClick={this.blackColorClick2} className='col-md-2 col-bnt col-btn1'></button>
+                            <button onClick={this.whiteColorClick2} className='col-md-2 col-bnt col-btn2'></button>
                             <br />
                             <center>
                                 <div>
-                                    <button className="btn btn-default gen-btn" type='submit'>Generate</button>
+                                    <button className="btn btn-default gen-btn" onClick={this.handleSubmit}>Generate</button>
                                 </div>
                             </center>
-                        </form>
+                        </div>
 
                     </div>
                 </div>
