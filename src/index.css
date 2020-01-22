@@ -37,10 +37,10 @@ body {
   
 }
 form{
-  margin-top: 40%;
+  margin-top: 30%;
   color: black;
-  margin-right: 0;
-  width: 80%;
+  margin-left: 0;
+  width: 100%;
 }
 img{
   margin-left:-10% ;
@@ -60,4 +60,22 @@ img{
 .gen-btn:active{
   background-color: rgba(43, 1, 1, 0.658);
 
+}
+.col-bnt{
+  width: 5px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  margin-left: 0;
+  margin-top: 2px;
+  outline: 0px;
+}
+.col-btn1{
+  margin-left: 0px;
+  background-color: black;
+}
+.col-btn2{
+  margin-left: 2px;
+  background-color: white;
+  border: 1px black solid;
 }
