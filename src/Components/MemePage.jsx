@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import randomMeme from '../img/IMG_20200116_130709.jpg'
 
 const memeAPI = "https://api.imgflip.com/get_memes"
 
@@ -8,7 +7,7 @@ class MemePage extends Component {
         super(props)
 
         this.state = {
-            defaultImg: randomMeme,
+            defaultImg: 'http://i.imgflip.com/1bij.jpg',
             topText: '',
             bottomText: '',
             allMemeImgs: []
@@ -18,7 +17,7 @@ class MemePage extends Component {
         fetch(memeAPI)
             .then(res => res.json())
             .then(res => {
-                this.setState({ allMemeImgs: res.data.memes.url })
+                this.setState({ allMemeImgs: res.data.memes})
             })
             .catch((error) => console.log(error))
     }
@@ -37,8 +36,7 @@ class MemePage extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length)
-        const randMemeImg = this.state.allMemeImgs[randNum]
-        this.setState({ defaultImg: randMemeImg })    
+        this.setState({ defaultImg: this.state.allMemeImgs[randNum].url})    
     }
 
     render() {
